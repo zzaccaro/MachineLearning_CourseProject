@@ -1,0 +1,296 @@
+<!DOCTYPE html>
+<html lang="en-us">
+  <head>
+    <meta charset="UTF-8">
+    <title>Machinelearning courseproject by zzaccaro</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" type="text/css" href="stylesheets/normalize.css" media="screen">
+    <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,700' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" type="text/css" href="stylesheets/stylesheet.css" media="screen">
+    <link rel="stylesheet" type="text/css" href="stylesheets/github-light.css" media="screen">
+  </head>
+  <body>
+    <section class="page-header">
+      <h1 class="project-name">Machinelearning courseproject</h1>
+      <h2 class="project-tagline"></h2>
+      <a href="https://github.com/zzaccaro/MachineLearning_CourseProject" class="btn">View on GitHub</a>
+      <a href="https://github.com/zzaccaro/MachineLearning_CourseProject/zipball/master" class="btn">Download .zip</a>
+      <a href="https://github.com/zzaccaro/MachineLearning_CourseProject/tarball/master" class="btn">Download .tar.gz</a>
+    </section>
+
+    <section class="main-content">
+      <p>&lt;!DOCTYPE html&gt;</p>
+
+<p></p>
+
+<p></p>
+
+<p></p>Practical Machine Learning - Course Project
+
+
+
+<p>
+</p>
+
+
+
+
+
+
+
+code{white-space: pre;}
+
+<p></p>
+
+
+
+
+  pre:not([class]) {
+    background-color: white;
+  }
+
+
+
+
+<p></p>
+
+<p></p>
+
+<div>
+
+
+<div id="header">
+<h1>
+<a id="practical-machine-learning---course-project" class="anchor" href="#practical-machine-learning---course-project" aria-hidden="true"><span class="octicon octicon-link"></span></a><strong>Practical Machine Learning - Course Project</strong>
+</h1>
+<h4>
+<a id="zach-zaccaro" class="anchor" href="#zach-zaccaro" aria-hidden="true"><span class="octicon octicon-link"></span></a><em>Zach Zaccaro</em>
+</h4>
+<h4>
+<a id="saturday-august-22-2015" class="anchor" href="#saturday-august-22-2015" aria-hidden="true"><span class="octicon octicon-link"></span></a><em>Saturday, August 22, 2015</em>
+</h4>
+</div>
+
+<p>This project was completed for the Practical Machine Learning class in the Coursera Data Science specialization track.</p>
+
+<p>The Github repository for this project can be found <a href="https://github.com/zzaccaro/MachineLearning_CourseProject">here</a>.</p>
+
+<div id="background">
+<h2>
+<a id="background" class="anchor" href="#background" aria-hidden="true"><span class="octicon octicon-link"></span></a>Background</h2>
+<p>(Taken from the project description)</p>
+<p>“Using devices such as Jawbone Up, Nike FuelBand, and Fitbit it is now possible to collect a large amount of data about personal activity relatively inexpensively. These type of devices are part of the quantified self movement - a group of enthusiasts who take measurements about themselves regularly to improve their health, to find patterns in their behavior, or because they are tech geeks. One thing that people regularly do is quantify how much of a particular activity they do, but they rarely quantify how well they do it. In this project, your goal will be to use data from accelerometers on the belt, forearm, arm, and dumbell of 6 participants. They were asked to perform barbell lifts correctly and incorrectly in 5 different ways. More information is available from the website here: <a href="http://groupware.les.inf.puc-rio.br/har">http://groupware.les.inf.puc-rio.br/har</a> (see the section on the Weight Lifting Exercise Dataset).”</p>
+</div>
+
+<div id="the-data">
+<h2>
+<a id="the-data" class="anchor" href="#the-data" aria-hidden="true"><span class="octicon octicon-link"></span></a>The Data</h2>
+<p>The training data for this project are available here:</p>
+<p><a href="https://d396qusza40orc.cloudfront.net/predmachlearn/pml-training.csv">https://d396qusza40orc.cloudfront.net/predmachlearn/pml-training.csv</a></p>
+<p>The test data are available here:</p>
+<p><a href="https://d396qusza40orc.cloudfront.net/predmachlearn/pml-testing.csv">https://d396qusza40orc.cloudfront.net/predmachlearn/pml-testing.csv</a></p>
+<p>The data for this project come from this source: <a href="http://groupware.les.inf.puc-rio.br/har">http://groupware.les.inf.puc-rio.br/har</a></p>
+</div>
+
+<div id="project-goals">
+<h2>
+<a id="project-goals" class="anchor" href="#project-goals" aria-hidden="true"><span class="octicon octicon-link"></span></a>Project Goals</h2>
+<p>(Taken from the project description)</p>
+<p>“The goal of your project is to predict the manner in which they did the exercise. This is the”classe" variable in the training set. You may use any of the other variables to predict with. You should create a report describing how you built your model, how you used cross validation, what you think the expected out of sample error is, and why you made the choices you did. You will also use your prediction model to predict 20 different test cases.</p>
+<ol>
+<li>Your submission should consist of a link to a Github repo with your R markdown and compiled HTML file describing your analysis. Please constrain the text of the writeup to &lt; 2000 words and the number of figures to be less than 5. It will make it easier for the graders if you submit a repo with a gh-pages branch so the HTML page can be viewed online (and you always want to make it easy on graders :-).</li>
+<li>You should also apply your machine learning algorithm to the 20 test cases available in the test data above. Please submit your predictions in appropriate format to the programming assignment for automated grading. See the programming assignment for additional details."</li>
+</ol>
+</div>
+
+<div id="reproducibility-and-loading-libraries">
+<h2>
+<a id="reproducibility-and-loading-libraries" class="anchor" href="#reproducibility-and-loading-libraries" aria-hidden="true"><span class="octicon octicon-link"></span></a>Reproducibility and Loading Libraries</h2>
+<p>In order for reproducibility of these results, the following libraries are required:</p>
+<pre><code>library(caret)</code></pre>
+<pre><code>## Loading required package: lattice
+## Loading required package: ggplot2</code></pre>
+<pre><code>library(randomForest)</code></pre>
+<pre><code>## randomForest 4.6-10
+## Type rfNews() to see new features/changes/bug fixes.</code></pre>
+<p>We also need to set a seed for reproducibility:</p>
+<pre><code>set.seed(23)</code></pre>
+</div>
+
+<div id="partitioning-and-preprocessing-the-data">
+<h2>
+<a id="partitioning-and-preprocessing-the-data" class="anchor" href="#partitioning-and-preprocessing-the-data" aria-hidden="true"><span class="octicon octicon-link"></span></a>Partitioning and Preprocessing the Data</h2>
+<p>First we need to load the training and testing data.</p>
+<pre><code>trainingUrl &lt;- "https://d396qusza40orc.cloudfront.net/predmachlearn/pml-training.csv"
+testingUrl &lt;- "https://d396qusza40orc.cloudfront.net/predmachlearn/pml-testing.csv"
+
+training &lt;- read.csv(url(trainingUrl), na.strings=c("NA","#DIV/0!",""))
+testing &lt;- read.csv(url(testingUrl), na.strings=c("NA","#DIV/0!",""))
+dim(training)</code></pre>
+<pre><code>## [1] 19622   160</code></pre>
+<pre><code>summary(training$classe)</code></pre>
+<pre><code>##    A    B    C    D    E 
+## 5580 3797 3422 3216 3607</code></pre>
+<p>As you can see, there are 19622 records with 160 variables. We will be predicting the <strong>classe</strong> variable.</p>
+<p>Now we need to partition the training data set into its own training and testing sets to build, train, and test our model.</p>
+<pre><code>inTrain &lt;- createDataPartition(training$classe, p=0.7, list = FALSE)
+modelTrain &lt;- training[inTrain, ]
+modelTest &lt;- training[-inTrain, ]
+dim(modelTrain)</code></pre>
+<pre><code>## [1] 13737   160</code></pre>
+<p>There are 159 columns that we can use to predict the classe, but we probably don’t need that many. We can reduce the amount of columns in the dataset by removing ones with more missing values.</p>
+<pre><code>train_na_sums = sapply(modelTrain, function(x) {sum(is.na(x))})
+table(train_na_sums)</code></pre>
+<pre><code>## train_na_sums
+##     0 13461 13462 13463 13464 13465 13466 13468 13483 13513 13514 13516 
+##    60    67     1     1     1     5     4     2     2     1     1     2 
+## 13522 13523 13524 13737 
+##     1     4     2     6</code></pre>
+<p>As the table shows, there are 60 columns with 0 NA values, and the rest contain almost all NA values. Therefore, we are only going to use the 60 columns with no NA values. We also need to do this with the testing data set.</p>
+<pre><code>test_na_sums = sapply(modelTest, function(x) {sum(is.na(x))})</code></pre>
+<pre><code>train_na_cols &lt;- names(train_na_sums[train_na_sums &gt; 0])
+test_na_cols &lt;- names(test_na_sums[test_na_sums &gt; 0])
+
+modelTrain &lt;- modelTrain[, !names(modelTrain) %in% train_na_cols]
+modelTest &lt;- modelTest[, !names(modelTest) %in% test_na_cols]
+
+str(modelTrain)</code></pre>
+<pre><code>## 'data.frame':    13737 obs. of  60 variables:
+##  $ X                   : int  1 2 3 4 5 7 9 10 11 12 ...
+##  $ user_name           : Factor w/ 6 levels "adelmo","carlitos",..: 2 2 2 2 2 2 2 2 2 2 ...
+##  $ raw_timestamp_part_1: int  1323084231 1323084231 1323084231 1323084232 1323084232 1323084232 1323084232 1323084232 1323084232 1323084232 ...
+##  $ raw_timestamp_part_2: int  788290 808298 820366 120339 196328 368296 484323 484434 500302 528316 ...
+##  $ cvtd_timestamp      : Factor w/ 20 levels "02/12/2011 13:32",..: 9 9 9 9 9 9 9 9 9 9 ...
+##  $ new_window          : Factor w/ 2 levels "no","yes": 1 1 1 1 1 1 1 1 1 1 ...
+##  $ num_window          : int  11 11 11 12 12 12 12 12 12 12 ...
+##  $ roll_belt           : num  1.41 1.41 1.42 1.48 1.48 1.42 1.43 1.45 1.45 1.43 ...
+##  $ pitch_belt          : num  8.07 8.07 8.07 8.05 8.07 8.09 8.16 8.17 8.18 8.18 ...
+##  $ yaw_belt            : num  -94.4 -94.4 -94.4 -94.4 -94.4 -94.4 -94.4 -94.4 -94.4 -94.4 ...
+##  $ total_accel_belt    : int  3 3 3 3 3 3 3 3 3 3 ...
+##  $ gyros_belt_x        : num  0 0.02 0 0.02 0.02 0.02 0.02 0.03 0.03 0.02 ...
+##  $ gyros_belt_y        : num  0 0 0 0 0.02 0 0 0 0 0 ...
+##  $ gyros_belt_z        : num  -0.02 -0.02 -0.02 -0.03 -0.02 -0.02 -0.02 0 -0.02 -0.02 ...
+##  $ accel_belt_x        : int  -21 -22 -20 -22 -21 -22 -20 -21 -21 -22 ...
+##  $ accel_belt_y        : int  4 4 5 3 2 3 2 4 2 2 ...
+##  $ accel_belt_z        : int  22 22 23 21 24 21 24 22 23 23 ...
+##  $ magnet_belt_x       : int  -3 -7 -2 -6 -6 -4 1 -3 -5 -2 ...
+##  $ magnet_belt_y       : int  599 608 600 604 600 599 602 609 596 602 ...
+##  $ magnet_belt_z       : int  -313 -311 -305 -310 -302 -311 -312 -308 -317 -319 ...
+##  $ roll_arm            : num  -128 -128 -128 -128 -128 -128 -128 -128 -128 -128 ...
+##  $ pitch_arm           : num  22.5 22.5 22.5 22.1 22.1 21.9 21.7 21.6 21.5 21.5 ...
+##  $ yaw_arm             : num  -161 -161 -161 -161 -161 -161 -161 -161 -161 -161 ...
+##  $ total_accel_arm     : int  34 34 34 34 34 34 34 34 34 34 ...
+##  $ gyros_arm_x         : num  0 0.02 0.02 0.02 0 0 0.02 0.02 0.02 0.02 ...
+##  $ gyros_arm_y         : num  0 -0.02 -0.02 -0.03 -0.03 -0.03 -0.03 -0.03 -0.03 -0.03 ...
+##  $ gyros_arm_z         : num  -0.02 -0.02 -0.02 0.02 0 0 -0.02 -0.02 0 0 ...
+##  $ accel_arm_x         : int  -288 -290 -289 -289 -289 -289 -288 -288 -290 -288 ...
+##  $ accel_arm_y         : int  109 110 110 111 111 111 109 110 110 111 ...
+##  $ accel_arm_z         : int  -123 -125 -126 -123 -123 -125 -122 -124 -123 -123 ...
+##  $ magnet_arm_x        : int  -368 -369 -368 -372 -374 -373 -369 -376 -366 -363 ...
+##  $ magnet_arm_y        : int  337 337 344 344 337 336 341 334 339 343 ...
+##  $ magnet_arm_z        : int  516 513 513 512 506 509 518 516 509 520 ...
+##  $ roll_dumbbell       : num  13.1 13.1 12.9 13.4 13.4 ...
+##  $ pitch_dumbbell      : num  -70.5 -70.6 -70.3 -70.4 -70.4 ...
+##  $ yaw_dumbbell        : num  -84.9 -84.7 -85.1 -84.9 -84.9 ...
+##  $ total_accel_dumbbell: int  37 37 37 37 37 37 37 37 37 37 ...
+##  $ gyros_dumbbell_x    : num  0 0 0 0 0 0 0 0 0 0 ...
+##  $ gyros_dumbbell_y    : num  -0.02 -0.02 -0.02 -0.02 -0.02 -0.02 -0.02 -0.02 -0.02 -0.02 ...
+##  $ gyros_dumbbell_z    : num  0 0 0 -0.02 0 0 0 0 0 0 ...
+##  $ accel_dumbbell_x    : int  -234 -233 -232 -232 -233 -232 -232 -235 -233 -233 ...
+##  $ accel_dumbbell_y    : int  47 47 46 48 48 47 47 48 47 47 ...
+##  $ accel_dumbbell_z    : int  -271 -269 -270 -269 -270 -270 -269 -270 -269 -270 ...
+##  $ magnet_dumbbell_x   : int  -559 -555 -561 -552 -554 -551 -549 -558 -564 -554 ...
+##  $ magnet_dumbbell_y   : int  293 296 298 303 292 295 292 291 299 291 ...
+##  $ magnet_dumbbell_z   : num  -65 -64 -63 -60 -68 -70 -65 -69 -64 -65 ...
+##  $ roll_forearm        : num  28.4 28.3 28.3 28.1 28 27.9 27.7 27.7 27.6 27.5 ...
+##  $ pitch_forearm       : num  -63.9 -63.9 -63.9 -63.9 -63.9 -63.9 -63.8 -63.8 -63.8 -63.8 ...
+##  $ yaw_forearm         : num  -153 -153 -152 -152 -152 -152 -152 -152 -152 -152 ...
+##  $ total_accel_forearm : int  36 36 36 36 36 36 36 36 36 36 ...
+##  $ gyros_forearm_x     : num  0.03 0.02 0.03 0.02 0.02 0.02 0.03 0.02 0.02 0.02 ...
+##  $ gyros_forearm_y     : num  0 0 -0.02 -0.02 0 0 0 0 -0.02 0.02 ...
+##  $ gyros_forearm_z     : num  -0.02 -0.02 0 0 -0.02 -0.02 -0.02 -0.02 -0.02 -0.03 ...
+##  $ accel_forearm_x     : int  192 192 196 189 189 195 193 190 193 191 ...
+##  $ accel_forearm_y     : int  203 203 204 206 206 205 204 205 205 203 ...
+##  $ accel_forearm_z     : int  -215 -216 -213 -214 -214 -215 -214 -215 -214 -215 ...
+##  $ magnet_forearm_x    : int  -17 -18 -18 -16 -17 -18 -16 -22 -17 -11 ...
+##  $ magnet_forearm_y    : num  654 661 658 658 655 659 653 656 657 657 ...
+##  $ magnet_forearm_z    : num  476 473 469 469 473 470 476 473 465 478 ...
+##  $ classe              : Factor w/ 5 levels "A","B","C","D",..: 1 1 1 1 1 1 1 1 1 1 ...</code></pre>
+<p>We can also eliminate the first seven rows since they do not deal with movement and would not help in predicting the classe variable.</p>
+<pre><code>modelTrain &lt;- modelTrain[, -c(1:7)]
+modelTest &lt;- modelTest[, -c(1:7)]</code></pre>
+</div>
+
+<div id="building-the-model">
+<h2>
+<a id="building-the-model" class="anchor" href="#building-the-model" aria-hidden="true"><span class="octicon octicon-link"></span></a>Building the Model</h2>
+<p>Now we can train the model by using all remaining variables in the data set. I have chosen to use the random forest method since it is one of the most accurate methods. I am also going to save the model since it takes a while to build.</p>
+<pre><code># uncomment these when building the model
+#model &lt;- train(classe ~ ., method = "rf", data = modelTrain)
+#saveRDS(model, "model.RDS")
+model &lt;- readRDS("model.RDS")</code></pre>
+</div>
+
+<div id="testing-the-model">
+<h2>
+<a id="testing-the-model" class="anchor" href="#testing-the-model" aria-hidden="true"><span class="octicon octicon-link"></span></a>Testing the Model</h2>
+<p>Now that we have built the model, we can test its accuracy on the testing data set.</p>
+<pre><code>predictions &lt;- predict(model, modelTest)
+confusionMatrix(predictions, modelTest$classe)</code></pre>
+<pre><code>## Confusion Matrix and Statistics
+## 
+##           Reference
+## Prediction    A    B    C    D    E
+##          A 1671   15    0    0    0
+##          B    3 1123    4    0    1
+##          C    0    1 1018    4    0
+##          D    0    0    4  959    2
+##          E    0    0    0    1 1079
+## 
+## Overall Statistics
+##                                           
+##                Accuracy : 0.9941          
+##                  95% CI : (0.9917, 0.9959)
+##     No Information Rate : 0.2845          
+##     P-Value [Acc &gt; NIR] : &lt; 2.2e-16       
+##                                           
+##                   Kappa : 0.9925          
+##  Mcnemar's Test P-Value : NA              
+## 
+## Statistics by Class:
+## 
+##                      Class: A Class: B Class: C Class: D Class: E
+## Sensitivity            0.9982   0.9860   0.9922   0.9948   0.9972
+## Specificity            0.9964   0.9983   0.9990   0.9988   0.9998
+## Pos Pred Value         0.9911   0.9929   0.9951   0.9938   0.9991
+## Neg Pred Value         0.9993   0.9966   0.9984   0.9990   0.9994
+## Prevalence             0.2845   0.1935   0.1743   0.1638   0.1839
+## Detection Rate         0.2839   0.1908   0.1730   0.1630   0.1833
+## Detection Prevalence   0.2865   0.1922   0.1738   0.1640   0.1835
+## Balanced Accuracy      0.9973   0.9921   0.9956   0.9968   0.9985</code></pre>
+<p>As shown above, the model was <strong>99.4%</strong> accurate, so that means we estimate our out of sample error to be about <strong>0.6%</strong>. We can assume our model is quite accurate in predicting activity quality from activity monitors.</p>
+</div>
+
+<p></p>
+</div>
+
+
+
+
+
+
+
+<p>
+</p>
+
+      <footer class="site-footer">
+        <span class="site-footer-owner"><a href="https://github.com/zzaccaro/MachineLearning_CourseProject">Machinelearning courseproject</a> is maintained by <a href="https://github.com/zzaccaro">zzaccaro</a>.</span>
+
+        <span class="site-footer-credits">This page was generated by <a href="https://pages.github.com">GitHub Pages</a> using the <a href="https://github.com/jasonlong/cayman-theme">Cayman theme</a> by <a href="https://twitter.com/jasonlong">Jason Long</a>.</span>
+      </footer>
+
+    </section>
+
+  
+  </body>
+</html>
